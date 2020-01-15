@@ -16,7 +16,12 @@ _global_script_class_icons={
 [application]
 
 config/name="Godot-Getaway"
+run/main_scene="res://Lobby/Lobby.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Network="*res://Networking/Network.gd"
 
 [rendering]
 

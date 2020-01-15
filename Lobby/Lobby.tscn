@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://GUI/default.theme" type="Theme" id=1]
-[ext_resource path="res://Lobby/WaitingRoom.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Lobby/Lobby.gd" type="Script" id=2]
+[ext_resource path="res://Lobby/WaitingRoom.tscn" type="PackedScene" id=3]
 
 [node name="Lobby" type="Control"]
 anchor_left = 1.0
@@ -11,6 +12,7 @@ anchor_bottom = 1.0
 margin_left = -1024.0
 margin_top = -600.0
 theme = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_left = 1.0
@@ -105,5 +107,7 @@ margin_right = 461.0
 margin_bottom = 196.0
 text = "Join Game"
 
-[node name="WaitingRoom" parent="." instance=ExtResource( 2 )]
+[node name="WaitingRoom" parent="." instance=ExtResource( 3 )]
 visible = false
+[connection signal="pressed" from="VBoxContainer/CenterContainer/GridContainer/HostButton" to="." method="_on_HostButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/CenterContainer/GridContainer/JoinButton" to="." method="_on_JoinButton_pressed"]
