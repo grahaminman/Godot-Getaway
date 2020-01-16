@@ -33,11 +33,19 @@ func make_blank_map():
 			var building = pick_building()
 			set_cell_item(x, 0, z, building, building_rotation)
 
+
 func pick_building():
-	var possible_buildings = [16, 17, 18]
-	var building = possible_buildings[randi() % possible_buildings.size() -1]
+	var chance_of_skyscraper = 1
+	var skyscraper = 16
+	var possible_buildings = [17,18]
+	var building
+	if (randi() % 99) +1 <= chance_of_skyscraper:
+		building = skyscraper
+	else:
+		 building = possible_buildings[randi() % possible_buildings.size() -1]
 	return building
-	
+
+
 func check_neighbours(cell, unvisited):
 	var list = []
 	for n in cell_walls.keys():
