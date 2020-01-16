@@ -99,6 +99,7 @@ material/2 = null
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -1, 0, 8.74228e-008, 0, 1, 0, -8.74228e-008, 0, -1, 0, 4, -10 )
+current = true
 far = 600.0
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
