@@ -50,6 +50,7 @@ remote func _send_player_info(id, player_info):
 		rset("players", players)
 		rpc("update_waiting_room")
 
+
 func _on_player_connected(id):
 	if not get_tree().is_network_server():
 		print( str(id) + " has connected.")
@@ -57,3 +58,24 @@ func _on_player_connected(id):
 
 sync func update_waiting_room():
 	get_tree().call_group("WaitingRoom", "refresh_players", players)
+
+
+func start_game():
+	rpc("load_world")
+
+
+sync func load_world():
+	get_tree().change_scene("res://World/World.tscn")
+
+
+
+
+
+
+
+
+
+
+
+
+
