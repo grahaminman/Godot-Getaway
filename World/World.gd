@@ -8,6 +8,7 @@ func _ready() -> void:
 func spawn_local_player():
 	var new_player = preload("res://Player/Player.tscn").instance()
 	new_player.name = str(Network.local_player_id)
+	new_player.translation = Vector3(10,2,10)
 	$Players.add_child(new_player)
 
 
