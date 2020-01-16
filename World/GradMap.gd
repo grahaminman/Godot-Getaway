@@ -9,6 +9,8 @@ var width = 20
 var height = 20
 var spacing = 2
 
+var erase_fraction = 0.20
+
 var cell_walls = {Vector3(0,0,-spacing) : N, Vector3(spacing,0,0): E,
 		Vector3(0,0,spacing): S, Vector3(-spacing,0,0): W}
 
@@ -21,6 +23,7 @@ func _ready() -> void:
 func make_map():
 	make_blank_map()
 	make_maze()
+	erase_walls()
 
 func make_blank_map():
 	for x in width:
@@ -84,6 +87,21 @@ func fill_gaps(current, dir):
 		set_cell_item(current.x, 0, current.z, tile_type, 0)
 
 
+func erase_walls():
+	for i in range(width * height * erase_fraction):
+		var x = int(rand_range(1, (width -1)/spacing )) * spacing
+		var z = int(rand_range(1, (height -1)/spacing)) * spacing
+		var cell = Vector3(x,0,z)
+		var current_cell = get_cell_item(cell.x, cell.y, cell.z)
+		var neighbour = cell_walls.keys()[randi() % cell_walls.size()]
+
+		if current_cell & cell_walls[neighbour]:
+			var walls = current_cell - cell_walls[neighbour]
+			var neighbour_walls = get_cell_item( (cell + neighbour).x, 0,
+					(cell + neighbour).z) - cell_walls[-neighbour]
+			set_cell_item(cell.x, 0, cell.z, walls, 0)
+			set_cell_item((cell + neighbour).x, 0, (cell + neighbour).z, neighbour_walls,0)
+			fill_gaps(cell, neighbour)
 
 
 
