@@ -44,10 +44,11 @@ func apply_throttle():
 	var forward = Input.get_action_strength("forward")
 	var back = Input.get_action_strength("back")
 	
-	if back:
-		throttle_val = -back
-	elif forward:
-		throttle_val = forward
+	if linear_velocity.length() < MAX_SPEED:
+		if back:
+			throttle_val = -back
+		elif forward:
+			throttle_val = forward
 		
 	return throttle_val * MAX_ENGINE_FORCE
 
