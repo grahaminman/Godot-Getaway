@@ -28,11 +28,13 @@ func make_map():
 func make_blank_map():
 	for x in width:
 		for z in height:
+			var possible_rotations = [0,10,16,22]
+			var building_rotation = possible_rotations[randi() % 4]
 			var building = pick_building()
-			set_cell_item(x, 0, z, building)
+			set_cell_item(x, 0, z, building, building_rotation)
 
 func pick_building():
-	var possible_buildings = [15, 16, 17, 18]
+	var possible_buildings = [16, 17, 18]
 	var building = possible_buildings[randi() % possible_buildings.size() -1]
 	return building
 	
