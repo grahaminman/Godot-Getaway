@@ -1,16 +1,22 @@
 extends Control
 
 onready var NameTextBox = $VBoxContainer/CenterContainer/GridContainer/NameTextBox
+onready var port = $VBoxContainer/CenterContainer/GridContainer/PortTextBox
+onready var selected_IP = $VBoxContainer/CenterContainer/GridContainer/IPTextBox
 
 func _ready():
 	NameTextBox.text = Saved.save_data["Player_name"]
+	selected_IP.text = Network.DEFAULT_IP
+	port.text = str(Network.DEFAULT_PORT)
 
 
 func _on_HostButton_pressed() -> void:
+	Network.selected_port = int(port.text)
 	Network.create_server()
 	create_waiting_room()
 
 func _on_JoinButton_pressed() -> void:
+	Network.selected_IP = selected_IP.text
 	Network.connect_to_server()
 	create_waiting_room()
 
