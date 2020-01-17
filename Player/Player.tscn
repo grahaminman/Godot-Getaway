@@ -5,7 +5,7 @@
 [ext_resource path="res://Player/PlayerMeshes/Tire.mesh" type="ArrayMesh" id=3]
 
 [sub_resource type="BoxShape" id=1]
-extents = Vector3( 1, 0.835695, 2.16916 )
+extents = Vector3( 0.910377, 0.835695, 2.16916 )
 
 [node name="Player" type="VehicleBody"]
 mass = 122.449
@@ -65,7 +65,7 @@ editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.464894, -1.202 )
 wheel_radius = 0.4
 wheel_rest_length = 0.2
-wheel_friction_slip = 5.0
+wheel_friction_slip = 8.5
 suspension_travel = 0.4
 suspension_stiffness = 25.0
 suspension_max_force = 500.0
@@ -83,7 +83,7 @@ editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.465272, -1.202 )
 wheel_radius = 0.4
 wheel_rest_length = 0.2
-wheel_friction_slip = 5.0
+wheel_friction_slip = 8.5
 suspension_travel = 0.4
 suspension_stiffness = 25.0
 suspension_max_force = 500.0
