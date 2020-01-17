@@ -36,7 +36,7 @@ radius = 0.531659
 
 [sub_resource type="ParticlesMaterial" id=3]
 emission_shape = 1
-emission_sphere_radius = 0.2
+emission_sphere_radius = 0.4
 gravity = Vector3( 0, 9.8, 0 )
 angular_velocity = 10.0
 
@@ -74,7 +74,7 @@ tracks/0/keys = {
 }
 
 [node name="Hydrant" type="Spatial"]
-transform = Transform( 0.997479, 0, 0, 0, 0.997479, 0, 0, 0, 0.997479, 0, -0.0217965, 0 )
+transform = Transform( 0.997479, 0, 0, 0, 0.997479, 0, 0, 0, 0.997479, 0, 0.0836246, 0 )
 script = ExtResource( 1 )
 
 [node name="FireHydrant" type="RigidBody" parent="."]
