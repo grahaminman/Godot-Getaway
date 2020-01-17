@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Props/Billboards/Poster.gd" type="Script" id=1]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.513726, 0.298039, 0.192157, 1 )
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.701961, 0.701961, 0.701961, 0.941176 )
+metallic = 0.75
+roughness = 0.1
+
+[node name="Billboard" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.03643, 0 )
+
+[node name="CSGCombiner" type="CSGCombiner" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10 )
+use_collision = true
+
+[node name="BillboardBacking" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 0 )
+width = 15.75
+height = 9.0
+depth = 0.3
+material = SubResource( 1 )
+
+[node name="BillboardPole1" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 9, 0 )
+width = 0.2
+height = 17.0
+depth = 0.2
+material = SubResource( 2 )
+
+[node name="BillboardPole2" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 9, 0 )
+width = 0.2
+height = 17.0
+depth = 0.2
+material = SubResource( 2 )
+
+[node name="Poster" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( -1, 8.74228e-008, 0, -8.74228e-008, -1, 0, 0, 0, 1, -0.00311828, 12.9421, 0.327736 )
+invert_faces = true
+width = 15.0
+height = 8.0
+depth = 0.1
+script = ExtResource( 1 )
