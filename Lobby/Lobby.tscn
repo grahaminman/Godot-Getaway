@@ -119,7 +119,9 @@ margin_top = 38.0
 margin_bottom = 123.0
 
 [node name="ItemList" parent="WaitingRoom/VBoxContainer/CenterContainer" index="0"]
-margin_bottom = 85.0
+margin_top = 42.0
+margin_bottom = 42.0
+items = [ "Player 1", null, false, "Player 2", null, false ]
 [connection signal="text_changed" from="VBoxContainer/CenterContainer/GridContainer/NameTextBox" to="." method="_on_NameTextBox_text_changed"]
 [connection signal="pressed" from="VBoxContainer/CenterContainer/GridContainer/HostButton" to="." method="_on_HostButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/CenterContainer/GridContainer/JoinButton" to="." method="_on_JoinButton_pressed"]

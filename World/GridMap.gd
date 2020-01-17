@@ -43,7 +43,7 @@ func make_blank_map():
 func pick_building():
 	var chance_of_skyscraper = 1
 	var skyscraper = 16
-	var possible_buildings = [17,18]
+	var possible_buildings = [17,18, 19,20, 21,22, 23,24]
 	var building
 	if (randi() % 99) +1 <= chance_of_skyscraper:
 		building = skyscraper
