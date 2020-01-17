@@ -8,6 +8,7 @@ var number_of_billboards = 75
 var number_of_traffic_cones = 40
 var number_of_hydrants = 50
 var number_of_streetlights = 50
+var number_of_ramps = 25
 
 func generate_props(tile_list, size):
 	tiles = tile_list
@@ -18,6 +19,7 @@ func generate_props(tile_list, size):
 	place_hydrants()
 	place_streetlights()
 
+
 func random_tile(tile_count):
 	var tile_list = tiles
 	var selected_tiles = []
@@ -27,8 +29,10 @@ func random_tile(tile_count):
 		selected_tiles.append(tile)
 	return selected_tiles
 	
+	
+	
 func place_cars():
-	var tile_list = random_tile(number_of_parked_cars)
+	var tile_list = random_tile(number_of_parked_cars + number_of_ramps)
 	for i in range(number_of_parked_cars):
 		var tile = tile_list[0]
 		var tile_type = get_node("..").get_cell_item(tile.x, 0, tile.z)
@@ -38,6 +42,7 @@ func place_cars():
 			tile.y = tile.y+1 # adjust for the height of the cars
 			rpc("spawn_cars", tile, tile_rotation)
 		tile_list.pop_front()
+	place_ramps(tile_list)
 
 
 sync func spawn_cars(tile, car_rotation):
@@ -46,6 +51,22 @@ sync func spawn_cars(tile, car_rotation):
 	car.rotation_degrees.y = car_rotation
 	add_child(car, true)
 
+func place_ramps(tile_list):
+	for i in range(number_of_ramps):
+		var tile = tile_list[0]
+		var tile_type = get_parent().get_cell_item(tile.x, 0, tile.z)
+		var allowed_rotations = $ObjectRotLookup.lookup_rotation(tile_type)
+		if not allowed_rotations == null:
+			var tile_rotation = allowed_rotations[randi() % allowed_rotations.size() -1] *-1
+			tile.y = tile.y + 0.75
+			rpc("spawn_ramps", tile, tile_rotation)
+		tile_list.pop_front()
+
+sync func spawn_ramps(tile, ramp_rotation):
+	var ramp = preload("res://Props/Dumpster/Dumpster.tscn").instance()
+	ramp.translation = Vector3( (tile.x * 20) + 10, tile.y, (tile.z * 20) +10)
+	ramp.rotation_degrees.y = ramp_rotation
+	add_child(ramp, true)
 
 func place_billboards():
 	var tile_list = random_tile(number_of_billboards)

@@ -74,7 +74,8 @@ extents = Vector3( 2.04045, 0.933909, 1 )
 [node name="ParkedCars" type="Spatial"]
 
 [node name="Car1" type="RigidBody" parent="."]
-transform = Transform( 1, 0, -2.16067e-007, 0, 1, 0, 2.16067e-007, 0, 1, 0.14429, 0.297, -6.5 )
+editor/display_folded = true
+transform = Transform( 1, 0, -2.16067e-007, 0, 1, 0, 2.16067e-007, 0, 1, 0.14429, 0.403895, -6.5 )
 mass = 400.0
 sleeping = true
 
@@ -120,7 +121,7 @@ shape = SubResource( 5 )
 
 [node name="Car2" type="RigidBody" parent="."]
 editor/display_folded = true
-transform = Transform( -1, 0, 1.19209e-007, 0, 1, 0, -1.19209e-007, 0, -1, 5.8993, 0.297, -6.5 )
+transform = Transform( -1, 0, 1.19209e-007, 0, 1, 0, -1.19209e-007, 0, -1, 5.8993, 0.403895, -6.5 )
 mass = 400.0
 sleeping = true
 
@@ -166,7 +167,7 @@ shape = SubResource( 5 )
 
 [node name="Car3" type="RigidBody" parent="."]
 editor/display_folded = true
-transform = Transform( -1, 0, 1.19209e-007, 0, 1, 0, -1.19209e-007, 0, -1, -5.6398, 0.297, -6.5 )
+transform = Transform( -1, 0, 1.19209e-007, 0, 1, 0, -1.19209e-007, 0, -1, -5.6398, 0.403895, -6.5 )
 mass = 400.0
 sleeping = true
 
