@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Props/MetalSteel.material" type="Material" id=1]
+
+[sub_resource type="CylinderMesh" id=1]
+material = ExtResource( 1 )
+top_radius = 0.125
+bottom_radius = 0.125
+height = 12.5
+
+[sub_resource type="CylinderShape" id=2]
+radius = 0.13
+height = 12.5
+
+[node name="ScaffoldSupportBar" type="RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.9949, 0 )
+sleeping = true
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 2 )
