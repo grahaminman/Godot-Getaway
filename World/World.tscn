@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://World/World.gd" type="Script" id=1]
 [ext_resource path="res://Tiles/updated_city.meshlib" type="MeshLibrary" id=2]
 [ext_resource path="res://World/GradMap.gd" type="Script" id=3]
+[ext_resource path="res://World/Border.tscn" type="PackedScene" id=4]
 
 [node name="World" type="Spatial" groups=[
 "gamestate",
@@ -21,3 +22,5 @@ script = ExtResource( 3 )
 __meta__ = {
 "_editor_clip_": 0
 }
+
+[node name="Border" parent="GridMap" instance=ExtResource( 4 )]
