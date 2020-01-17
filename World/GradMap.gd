@@ -15,9 +15,10 @@ var cell_walls = {Vector3(0,0,-spacing) : N, Vector3(spacing,0,0): E,
 		Vector3(0,0,spacing): S, Vector3(-spacing,0,0): W}
 
 func _ready() -> void:
-	randomize()
 	clear()
-	make_map()
+	if Network.local_player_id == 1:
+		randomize()
+		make_map()
 
 
 func make_map():
@@ -31,7 +32,7 @@ func make_blank_map():
 			var possible_rotations = [0,10,16,22]
 			var building_rotation = possible_rotations[randi() % 4]
 			var building = pick_building()
-			set_cell_item(x, 0, z, building, building_rotation)
+			rpc("place_cell",x,z,building,building_rotation)
 
 
 func pick_building():
@@ -80,8 +81,8 @@ func make_maze():
 			var current_walls = min(get_cell_item(current.x, 0, current.z),15) - cell_walls[dir]
 			var next_walls = min(get_cell_item(next.x, 0, next.z),15) - cell_walls[-dir]
 			
-			set_cell_item(current.x, 0, current.z, current_walls, 0)
-			set_cell_item(next.x, 0, next.z, next_walls, 0)
+			rpc("place_cell", current.x, current.z, current_walls, 0)
+			rpc("place_cell", next.x, next.z, next_walls, 0)
 			fill_gaps(current, dir)
 			current = next
 			unvisited.erase(current)
@@ -104,7 +105,7 @@ func fill_gaps(current, dir):
 		elif dir.z <0:
 			tile_type = 10
 			current.z -= 1
-		set_cell_item(current.x, 0, current.z, tile_type, 0)
+		rpc("place_cell", current.x, current.z, tile_type, 0)
 
 
 func erase_walls():
@@ -121,12 +122,13 @@ func erase_walls():
 			var neighbour_walls = get_cell_item( (cell + neighbour).x, 0,
 					(cell + neighbour).z) - cell_walls[-neighbour]
 			neighbour_walls = clamp(neighbour_walls,0,15)
-			set_cell_item(cell.x, 0, cell.z, walls, 0)
-			set_cell_item((cell + neighbour).x, 0, (cell + neighbour).z, neighbour_walls,0)
+			rpc("place_cell", cell.x, cell.z, walls, 0)
+			rpc("place_cell", (cell + neighbour).x, (cell + neighbour).z, neighbour_walls, 0)
 			fill_gaps(cell, neighbour)
 
 
-
+sync func place_cell(x,z,cell,cell_rotation):
+	set_cell_item(x,0,z,cell,cell_rotation)
 
 
 
