@@ -14,6 +14,9 @@ var erase_fraction = 0.20
 var cell_walls = {Vector3(0,0,-spacing) : N, Vector3(spacing,0,0): E,
 		Vector3(0,0,spacing): S, Vector3(-spacing,0,0): W}
 
+var plaza_tiles = [17, 20, 22, 25]
+var cafe_spots = []
+
 func _ready() -> void:
 	clear()
 	if Network.local_player_id == 1:
@@ -158,8 +161,12 @@ func record_tile_positions():
 			var current_tile_type = get_cell_item(current_cell.x, 0, current_cell.z)
 			if current_tile_type < 15:
 				tiles.append(current_cell)
+			elif current_tile_type in plaza_tiles:
+				var building_rotation = get_cell_item_orientation(current_cell.x, 0, current_cell.z)
+				var plaza_location = [building_rotation, x,z]
+				cafe_spots.append(plaza_location)
 	var map_size = Vector2(width, height)
-	$ObjectSpawner.generate_props(tiles, map_size)
+	$ObjectSpawner.generate_props(tiles, map_size, cafe_spots)
 
 
 sync func send_ready():

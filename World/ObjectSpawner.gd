@@ -1,6 +1,7 @@
 extends Node
 
 var tiles = []
+var cafe_spots = []
 var map_size = Vector2()
 
 var number_of_parked_cars = 100
@@ -10,9 +11,11 @@ var number_of_hydrants = 50
 var number_of_streetlights = 50
 var number_of_ramps = 25
 var number_of_scaffolding = 25
+var number_of_cafes = 25
 
-func generate_props(tile_list, size):
+func generate_props(tile_list, size, plazas):
 	tiles = tile_list
+	cafe_spots = plazas
 	map_size = size
 	place_cars()
 	place_billboards()
@@ -20,6 +23,7 @@ func generate_props(tile_list, size):
 	place_hydrants()
 	place_streetlights()
 	place_scaffolding()
+	place_cafes()
 
 
 func random_tile(tile_count):
@@ -164,3 +168,25 @@ sync func spawn_scaffolding(tile, scaffolding_rotation):
 	scaffolding.translation = Vector3( (tile.x * 20) + 10, tile.y, (tile.z * 20) +10)
 	scaffolding.rotation_degrees.y = scaffolding_rotation
 	add_child(scaffolding, true)
+
+func place_cafes():
+	cafe_spots.shuffle()
+	for i in range(number_of_cafes):
+		var tile = cafe_spots[i]
+		var building_rotation = tile[0]
+		var tile_position = Vector3(tile[1], 0.5, tile[2])
+		var tile_rotation = 0
+		
+		if building_rotation == 10:
+			tile_rotation = 180
+		elif building_rotation == 16:
+			tile_rotation = 90
+		elif building_rotation == 22:
+			tile_rotation = 270
+		rpc("spawn_cafes", tile_position, tile_rotation)
+
+sync func spawn_cafes(tile, cafe_rotation):
+	var cafe = preload("res://Props/Cafe/Cafe.tscn").instance()
+	cafe.translation = Vector3( (tile.x * 20) + 10, tile.y, (tile.z * 20) +10)
+	cafe.rotation_degrees.y = cafe_rotation
+	add_child(cafe, true)
