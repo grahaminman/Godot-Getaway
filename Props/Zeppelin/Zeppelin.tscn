@@ -144,7 +144,7 @@ tracks/0/keys = {
 }
 
 [node name="Zeppelin " type="MeshInstance"]
-transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -37.0642, 75, -37.0642 )
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -33.6225, 75, -33.6225 )
 layers = 2
 mesh = SubResource( 1 )
 material/0 = null
