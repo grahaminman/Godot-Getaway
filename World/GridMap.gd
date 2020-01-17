@@ -36,14 +36,29 @@ func make_blank_map():
 		for z in height:
 			var possible_rotations = [0,10,16,22]
 			var building_rotation = possible_rotations[randi() % 4]
-			var building = pick_building()
+			var building = pick_building(x,z)
 			rpc("place_cell",x,z,building,building_rotation)
 
 
-func pick_building():
+func pick_building(x,z):
 	var chance_of_skyscraper = 1
 	var skyscraper = 16
-	var possible_buildings = [17,18, 19,20, 21,22, 23,24]
+	var neighbourhood_1 = [17, 18, 19]
+	var neighbourhood_2 = [20, 21]
+	var neighbourhood_3 = [22, 23, 24]
+	var neighbourhood_4 = [25, 26, 27]
+	
+	var possible_buildings
+	
+	if x >= width/2 and z >= height/2:
+		possible_buildings = neighbourhood_2
+	elif x >= width/2 and z <= height/2:
+		possible_buildings = neighbourhood_3
+	elif x <= width/2 and z >= height/2:
+		possible_buildings = neighbourhood_4
+	else:
+		possible_buildings = neighbourhood_1
+		
 	var building
 	if (randi() % 99) +1 <= chance_of_skyscraper:
 		building = skyscraper
