@@ -43,7 +43,7 @@ sleeping = true
 script = ExtResource( 1 )
 
 [node name="CafeChair " type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.735951, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0 )
 mesh = SubResource( 1 )
 material/0 = null
 material/1 = null

@@ -174,7 +174,7 @@ func place_cafes():
 	for i in range(number_of_cafes):
 		var tile = cafe_spots[i]
 		var building_rotation = tile[0]
-		var tile_position = Vector3(tile[1], 0.5, tile[2])
+		var tile_position = Vector3(tile[1], 1.3, tile[2]) # y set to 1.3 as opposed to 0.5 in the vid - not sure yet but the chairs are below the ground otherwise
 		var tile_rotation = 0
 		
 		if building_rotation == 10:

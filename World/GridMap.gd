@@ -14,7 +14,7 @@ var erase_fraction = 0.20
 var cell_walls = {Vector3(0,0,-spacing) : N, Vector3(spacing,0,0): E,
 		Vector3(0,0,spacing): S, Vector3(-spacing,0,0): W}
 
-var plaza_tiles = [17, 20, 22, 25]
+var plaza_tiles = [17,20,22,25]
 var cafe_spots = []
 
 func _ready() -> void:
