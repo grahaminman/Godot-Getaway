@@ -15,6 +15,7 @@ var player_data = {"steer": 0, "engine": 0, "brakes": 0, "position": null}
 
 
 func _ready() -> void:
+	join_team()
 	players[name] = player_data
 	players[name].position = transform
 	
@@ -26,6 +27,14 @@ func is_local_Player():
 	return name == str(Network.local_player_id)
 
 
+func join_team():
+	if Network.players[int(name)]["is_cop"]:
+		add_to_group("cops")
+		collision_layer = 4
+		$RobberMesh.queue_free()
+	else:
+		$CopMesh.queue_free()
+		
 func _physics_process(delta: float) -> void:
 	if is_local_Player():
 		drive(delta)
