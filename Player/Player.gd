@@ -39,6 +39,7 @@ func join_team():
 func _physics_process(delta: float) -> void:
 	if is_local_Player():
 		drive(delta)
+		display_location()
 	if not Network.local_player_id == 1:
 		transform = players[name].position
 	
@@ -116,3 +117,9 @@ sync func manage_clients(id, steering_value, throttle, brakes, speed):
 	players[id].position = transform
 	players[id].speed = linear_velocity.length()
 	rset_unreliable("players", players)
+
+func display_location():
+	var x = stepify(translation.x, 1)
+	var z = stepify(translation.z, 1)
+
+	$GUI/ColorRect/VBoxContainer/Location.text = str(x) + " , " + str(z)
