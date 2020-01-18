@@ -31,4 +31,5 @@ func _on_Beacon_body_exited(body):
 
 
 func _on_Timer_timeout():
+	player.beacon_emptied()
 	queue_free()
