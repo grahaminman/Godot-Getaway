@@ -144,8 +144,7 @@ sync func update_money(id, cash):
 	players[id].money = cash
 	display_money(cash)
 
-	
-	
+
 func display_money(cash):
 	money = players[name].money
 	$GUI/ColorRect/VBoxContainer/MoneyLabel/AnimationPlayer.play("MoneyPulse")
