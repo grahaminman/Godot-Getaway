@@ -156,7 +156,7 @@ remote func display_money(cash):
 
 
 func money_delivered():
-	print("Delivering " + str(money) )
+	get_tree().call_group("Announcements", "money_stashed", Saved.save_data["Player_name"], money)
 	money = 0
 	manage_money()
 
