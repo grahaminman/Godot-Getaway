@@ -40,6 +40,7 @@ func join_team():
 		$RobberMesh.queue_free()
 	else:
 		$CopMesh.queue_free()
+		$Arrow.queue_free()
 		
 func _physics_process(delta: float) -> void:
 	if is_local_Player():
