@@ -6,7 +6,7 @@ func _on_Timer_timeout():
 	queue_free()
 
 
-func _on_body_entered(body):
+func _body_entered(body):
 	if not $AudioStreamPlayer3D.play():
 		$AudioStreamPlayer3D.play()
 
@@ -16,3 +16,6 @@ func _on_sleeping_state_changed():
 		$Timer.start()
 	else:
 		has_finished_spawning = true
+
+
+
