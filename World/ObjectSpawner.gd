@@ -122,7 +122,7 @@ func place_traffic_cones():
 		var allowed_rotations = $ObjectRotLookup.lookup_rotation(tile_type)
 		if not allowed_rotations == null:
 			var tile_rotation = allowed_rotations[randi() % allowed_rotations.size() -1] *-1
-			tile.y = tile.y+1 # adjust for the height of the billboards
+			tile.y = tile.y+1 # adjust for the height of the Traffic Cones
 			rpc("spawn_traffic_cones", tile, tile_rotation)
 		tile_list.pop_front()
 
@@ -210,4 +210,5 @@ sync func spawn_cafes(tile, cafe_rotation):
 	var cafe = preload("res://Props/Cafe/Cafe.tscn").instance()
 	cafe.translation = Vector3( (tile.x * 20) + 10, tile.y, (tile.z * 20) +10)
 	cafe.rotation_degrees.y = cafe_rotation
+	tile.y = tile.y + 0.5
 	add_child(cafe, true)
