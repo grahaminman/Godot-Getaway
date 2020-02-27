@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://GUI/default.theme" type="Theme" id=1]
+[ext_resource path="res://GUI/cop.svg" type="Texture" id=2]
+
+[sub_resource type="ViewportTexture" id=2]
+flags = 4
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="SpatialMaterial" id=3]
+resource_local_to_scene = true
+flags_transparent = true
+flags_unshaded = true
+params_billboard_mode = 2
+albedo_texture = SubResource( 2 )
+
+[sub_resource type="QuadMesh" id=1]
+resource_local_to_scene = true
+material = SubResource( 3 )
+size = Vector2( 6, 6 )
+
+[node name="PlayerBillboard" type="Spatial"]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 200, 200 )
+transparent_bg = true
+disable_3d = true
+usage = 0
+render_target_v_flip = true
+
+[node name="PlayerLabel" type="Label" parent="Viewport"]
+margin_right = 200.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 200, 0 )
+theme = ExtResource( 1 )
+text = "Yann"
+align = 1
+autowrap = true
+
+[node name="TextureProgress" type="TextureProgress" parent="Viewport"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -125.0
+margin_top = -160.0
+margin_right = -160.0
+margin_bottom = -160.0
+texture_progress = ExtResource( 2 )
+fill_mode = 4
+tint_progress = Color( 0.215686, 0.466667, 0.729412, 1 )

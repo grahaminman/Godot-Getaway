@@ -21,15 +21,17 @@ var player_data = {"steer": 0, "engine": 0, "brakes": 0,
 		"position": null, "speed": 0, "money": 0, "siren": false}
 
 
-func _ready() -> void:
+func _ready():
 	join_team()
 	players[name] = player_data
 	players[name].position = transform
+	$PlayerBillboard/Viewport/PlayerLabel.text = Network.players[int(name)]["Player_name"]
 	
 	if not is_local_Player():
 		$Camera.queue_free()
 		$GUI.queue_free()
-
+	else:
+		$PlayerBillboard/Viewport/PlayerLabel.queue_free()
 
 func is_local_Player():
 	return name == str(Network.local_player_id)
