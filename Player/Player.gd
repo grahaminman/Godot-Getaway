@@ -18,7 +18,7 @@ var siren = false
 
 sync var players = {}
 var player_data = {"steer": 0, "engine": 0, "brakes": 0,
-		"position": null, "speed": 0, "money": 0}
+		"position": null, "speed": 0, "money": 0, "siren": false}
 
 
 func _ready() -> void:
