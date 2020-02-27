@@ -56,6 +56,8 @@ func _physics_process(delta: float) -> void:
 	engine_force = players[name].engine
 	brake = players[name].brakes
 
+	if is_in_group("cops"):
+		check_siren()
 
 func drive(delta):
 	var speed = players[name].speed
@@ -181,11 +183,19 @@ func spawn_money():
 func _input(event):
 	if event.is_action_pressed("car_sound") and is_local_Player() and is_in_group("cops"):
 		siren = !siren
-		toggle_siren()
-	""
-func toggle_siren():
-	if siren:
-		$Siren/AudioStreamPlayer3D.play()
+		if not Network.local_player_id == 1:
+			rpc_id(1, "toggle_siren", name, siren)
+		else:
+			toggle_siren(name, siren)
+
+
+remote func toggle_siren(id, siren_state):
+	players[id]["siren"] = siren_state
+
+func check_siren():
+	if players[name]["siren"]:
+		if not $Siren/AudioStreamPlayer3D.playing:
+			$Siren/AudioStreamPlayer3D.play()
 		$Siren/SirenMesh/SpotLight.show()
 		$Siren/SirenMesh/SpotLight2.show()
 	else:
