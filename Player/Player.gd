@@ -16,6 +16,7 @@ var money_per_beacon = 1000
 
 var siren = false
 
+
 sync var players = {}
 var player_data = {"steer": 0, "engine": 0, "brakes": 0,
 		"position": null, "speed": 0, "money": 0, "siren": false}
@@ -42,10 +43,12 @@ func join_team():
 		add_to_group("cops")
 		collision_layer = 4
 		$RobberMesh.queue_free()
+		$Horn/AudioStreamPlayer3D2.queue_free()
 	else:
 		$CopMesh.queue_free()
 		$Arrow.queue_free()
 		$Siren.queue_free()
+		add_to_group("robbers")
 		
 func _physics_process(delta: float) -> void:
 	if is_local_Player():
@@ -60,6 +63,7 @@ func _physics_process(delta: float) -> void:
 
 	if is_in_group("cops"):
 		check_siren()
+
 
 func drive(delta):
 	var speed = players[name].speed
@@ -189,6 +193,9 @@ func _input(event):
 			rpc_id(1, "toggle_siren", name, siren)
 		else:
 			toggle_siren(name, siren)
+	else:
+		if event.is_action_pressed("car_sound") and is_local_Player() and is_in_group("robbers"):
+			$Horn/AudioStreamPlayer3D2.play()
 
 
 remote func toggle_siren(id, siren_state):
@@ -204,3 +211,4 @@ func check_siren():
 		$Siren/AudioStreamPlayer3D.stop()
 		$Siren/SirenMesh/SpotLight.hide()
 		$Siren/SirenMesh/SpotLight2.hide()
+
