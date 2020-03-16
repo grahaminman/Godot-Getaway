@@ -3,26 +3,26 @@
 [ext_resource path="res://GUI/default.theme" type="Theme" id=1]
 [ext_resource path="res://GUI/cop.svg" type="Texture" id=2]
 
-[sub_resource type="ViewportTexture" id=2]
+[sub_resource type="ViewportTexture" id=1]
 flags = 4
 viewport_path = NodePath("Viewport")
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="SpatialMaterial" id=2]
 resource_local_to_scene = true
 flags_transparent = true
 flags_unshaded = true
 params_billboard_mode = 2
-albedo_texture = SubResource( 2 )
+albedo_texture = SubResource( 1 )
 
-[sub_resource type="QuadMesh" id=1]
+[sub_resource type="QuadMesh" id=3]
 resource_local_to_scene = true
-material = SubResource( 3 )
+material = SubResource( 2 )
 size = Vector2( 6, 6 )
 
 [node name="PlayerBillboard" type="Spatial"]
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-mesh = SubResource( 1 )
+mesh = SubResource( 3 )
 material/0 = null
 
 [node name="Viewport" type="Viewport" parent="."]
