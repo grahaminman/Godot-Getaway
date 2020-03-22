@@ -176,6 +176,7 @@ remote func display_money(cash):
 
 func money_delivered():
 	get_tree().call_group("Announcements", "money_stashed", Saved.save_data["Player_name"], money)
+	get_tree().call_group("gamestate", "update_gamestate", money, 0)
 	money = 0
 	manage_money()
 
@@ -183,6 +184,8 @@ func _on_Player_body_entered(body: Node) -> void:
 	if body.has_node("Money"):
 		body.queue_free()
 		money += money_drop
+		if is_in_group("cops"):
+			get_tree().call_group("gamestate", "update_gamestate", 0, money)
 	elif money > 0 and not is_in_group("cops"):
 		spawn_money()
 		money -= money_drop
