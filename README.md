@@ -7,6 +7,6 @@ Up to Vid 48 using Godot 3.1.2
 
 Updated to Godot 3.2 Jan 31 20
 
-Currently on Vid 50 Tracking Crimes
+Currently on Vid 55 Win Conditions
 
 This should be exactly the same as the course but may not be - It seems to work as it should.
