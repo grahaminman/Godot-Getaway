@@ -53,7 +53,7 @@ func join_team():
 		$Arrow.queue_free()
 		$Siren.queue_free()
 		add_to_group("robbers")
-		
+
 func _physics_process(delta: float) -> void:
 	if is_local_Player():
 		drive(delta)
@@ -79,7 +79,6 @@ func drive(delta):
 	var brakes = apply_brakes()
 	
 	update_server(name, steering_value, throttle, brakes, speed)
-
 
 
 func apply_steering(delta):
