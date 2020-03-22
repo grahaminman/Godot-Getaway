@@ -12,7 +12,6 @@ func _enter_tree():
 func _ready() -> void:
 	pass
 
-
 func spawn_local_player():
 	var new_player = preload("res://Player/Player.tscn").instance()
 	new_player.name = str(Network.local_player_id)
