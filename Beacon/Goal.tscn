@@ -12,4 +12,9 @@ albedo_color = Color( 0.227451, 0.337255, 0.772549, 0.52549 )
 script = ExtResource( 2 )
 
 [node name="CSGCylinder" parent="." index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0777016, 23.6419, -0.0961151 )
+height = 53.0
 material = SubResource( 1 )
+
+[node name="CollisionShape" parent="." index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0190787, 2.8946, 0.0492086 )

@@ -234,4 +234,6 @@ func _on_ArrestArea_body_exited(body):
 func increment_arrest_value():
 	arrest_value += 1
 	$PlayerBillboard/Viewport/TextureProgress.value = arrest_value
-
+	if arrest_value == max_arrest_value:
+		get_tree().call_group("Announcement", "victory", false)
+		

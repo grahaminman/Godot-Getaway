@@ -13,6 +13,7 @@ radius = 2.5
 height = 5.0
 
 [node name="Beacon" type="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65279, 0 )
 collision_layer = 0
 collision_mask = 2
 script = ExtResource( 1 )

@@ -14,6 +14,8 @@ var number_of_ramps = 25
 var number_of_scaffolding = 25
 var number_of_cafes = 25
 
+signal cop_spawn
+
 func generate_props(tile_list, size, plazas):
 	tiles = tile_list
 	cafe_spots = plazas
@@ -54,8 +56,9 @@ sync func spawn_beacons(tile):
 
 sync func spawn_goal(tile):
 	var goal = preload("res://Beacon/Goal.tscn").instance()
-	goal.translation = Vector3((tile.x * 20) + 10, tile.y, (tile.z * 20) +10)
+	goal.translation = Vector3((tile.x * 20) + 10, (tile.y) +3, (tile.z * 20) +10)
 	add_child(goal, true)
+	emit_signal("cop_spawn", goal.translation)
 
 
 func place_cars():
@@ -70,6 +73,7 @@ func place_cars():
 			rpc("spawn_cars", tile, tile_rotation)
 		tile_list.pop_front()
 	place_ramps(tile_list)
+
 
 sync func spawn_cars(tile, car_rotation):
 	var car = preload("res://Props/ParkedCars.tscn").instance()
